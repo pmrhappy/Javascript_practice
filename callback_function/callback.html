@@ -1,0 +1,52 @@
+<html>
+<head></head>
+<body>
+
+<script>
+// [1] basic: passing the args and callback function with different arguments 
+var f1=function(arg1,callback){
+    alert("here is f1!!"+arg1);
+    if(typeof(callback)=='function')
+        callback(arg1);
+};
+
+var f2=function(arg1,callback){
+    alert("here is f2!!"+arg1);
+    if(typeof(callback)=='function')
+        callback();
+}
+
+var f3=function(callback){
+    alert("here is f3:")
+    if(typeof(callback)=='function')
+        callback(arguments[1]);
+}
+// [2] object callback
+function obj(){
+    
+    this.f4=function(arg1,callback){
+    alert("here is f4!!"+arg1);
+    if(typeof(callback)=='function')
+        callback();
+    }
+
+    this.f5=function(callback){
+    alert("here is f5:")
+    if(typeof(callback)=='function')
+        callback(arguments[1]);
+}
+};
+
+window.onload=function(){
+    //[1]
+    f1(999,f2);
+    //[2]
+    var test_obj=new obj();
+    test_obj.f5(callback=test_obj.f4,100,50);
+}
+
+</script>
+
+</body>
+
+</html>
